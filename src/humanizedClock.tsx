@@ -167,6 +167,22 @@ function fronMinuteToFrench(minutes: number) : string {
   }
 }
 
+export function humanizedClockInFrench(date: Datetime) : [string, string] {
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+
+  if(minutes > 30) {
+    const hourString = (hour + 1) > 1 ? "heures" : "heure";
+    return `${fromHourToFrench(hour + 1)} ${hourString} ${fronMinuteToFrench(minutes)}`;
+  }
+
+  const hourString = (hour + 1) > 1 ? "heures" : "heure";
+  return `${fromHourToFrench(hour)} ${hourString} ${fronMinuteToFrench(minutes)}`;
+}
+
+
+
+
 export function humanizedClock(date: Datetime, locale: string = "fr") : [string, string] {
   const hour = date.getHours();
   const minutes = date.getMinutes();
@@ -177,4 +193,5 @@ export function humanizedClock(date: Datetime, locale: string = "fr") : [string,
 
   return [fromHourToFrench(hour), fronMinuteToFrench(minutes)];
 }
+
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import { humanizedClock } from "./humanizedClock";
+import { humanizedClock, humanizedClockInFrench } from "./humanizedClock";
 import './App.css'
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         </p>
 
         <p><span>La date</span> {date.toString()}</p>
-        <p>{humanizedClock(date)}</p>
+        <p>{humanizedClockInFrench(date)}</p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
