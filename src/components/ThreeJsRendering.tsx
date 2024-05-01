@@ -6,6 +6,7 @@ import LettersGrid from "./LettersGrid";
 interface ThreejsRenderingProps {
   
 }
+//https://youtube.com/shorts/3pORYUBFSAc?si=26LkjHW-K_GXYi5r
 
 function ThreejsRendering({} : ThreejsRenderingProps) {
   const cameraControlRef = useRef<CameraControls|null>(null);
@@ -27,7 +28,7 @@ function ThreejsRendering({} : ThreejsRenderingProps) {
             <color attach="background" args={['#c0d6e9']} />
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
              <Center>
-        <LettersGrid />
+        <LettersGrid ffddf />
         </Center>
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
