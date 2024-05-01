@@ -5,6 +5,7 @@ import find from "lodash/find";
 import { Letters, fromHumanizedWordToLetters } from "../humanizedClock";
 
 interface LettersGridProps {
+    dateHumanized: string;
 }
 
 function fromHumanizedToLetters(words: string) {
@@ -12,8 +13,8 @@ function fromHumanizedToLetters(words: string) {
     return flatten(positions);
 }
 
-function LettersGrid({} : LettersGridProps) {
-    const letterPositions = useMemo(() => fromHumanizedToLetters("il est deux heures moins le quart"), []);
+function LettersGrid({dateHumanized} : LettersGridProps) {
+    const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
 
 
     function computeLine(line: string, y: number) {

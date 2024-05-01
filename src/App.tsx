@@ -1,11 +1,9 @@
-import { useState } from 'react'
-import { humanizedClock, humanizedClockInFrench } from "./humanizedClock";
+import { useState } from 'react';
 import ThreeJsRendering from "./components/ThreeJsRendering";
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0);
-  const [date, setDate] = useState<DateTime>(new Date());
 
   return (
     <>
@@ -17,11 +15,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
-
-        <p><span>La date</span> {date.toString()}</p>
-        <p>{humanizedClockInFrench(date)}</p>
       </div>
-      <ThreeJsRendering />
+      <ThreeJsRendering/>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
