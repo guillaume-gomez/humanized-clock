@@ -1,6 +1,6 @@
 import { useRef , useState, Suspense, MutableRefObject, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center, Text3D } from '@react-three/drei';
+import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";
 import { humanizedClockInFrench } from "../humanizedClock";
 
@@ -51,7 +51,7 @@ function ThreejsRendering({} : ThreejsRenderingProps) {
             <color attach="background" args={['#c0d6e9']} />
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
             <Center>
-              <LettersGrid lkl dateHumanized={"il est " + humanizedClockInFrench(date)} />
+              <LettersGrid jk dateHumanized={"il est " + humanizedClockInFrench(date)} />
             </Center>
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
