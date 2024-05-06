@@ -1,7 +1,8 @@
 import { useRef , useState, Suspense, MutableRefObject, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center } from '@react-three/drei';
+import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center, Grid, Stars } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";
+import CityText from "./CityText";
 import { humanizedClockInFrench } from "../humanizedClock";
 
 interface ThreejsRenderingProps {
@@ -49,18 +50,22 @@ function ThreejsRendering({} : ThreejsRenderingProps) {
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 10]} />
             <color attach="background" args={['#c0d6e9']} />
+            {/*<Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />*/}
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
             <Center>
-              <LettersGrid jk dateHumanized={"il est " + humanizedClockInFrench(date)} />
+              {/*<LettersGrid jk dateHumanized={"il est " + humanizedClockInFrench(date)} />*/}
+              <CityText />
             </Center>
+            <Grid args={[50, 50]} position={[0,0,0]} sectionColor={'blue'} cellColor='black' />
+
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
             </GizmoHelper>
             <CameraControls
-              minPolarAngle={0}
+              /*minPolarAngle={0}
               maxPolarAngle={Math.PI / 1.9}
               minAzimuthAngle={-0.55}
-              maxAzimuthAngle={0.55}
+              maxAzimuthAngle={0.55}*/
               makeDefault
               ref={cameraControlRef}
             />
@@ -70,5 +75,8 @@ function ThreejsRendering({} : ThreejsRenderingProps) {
     </div>
   );
 }
+
+
+
 
 export default ThreejsRendering;
