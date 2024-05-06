@@ -6,12 +6,12 @@ function arrayList(offset: number) {
     return Array.from({length: 10}, (_, i) => i + offset);
 }
 const mapWorld = [
-    arrayList(0),
+    /*arrayList(0),
     arrayList(10),
     arrayList(20),
     arrayList(30),
     arrayList(40),
-    arrayList(50),
+    arrayList(50),*/
     [60],
 ]
 
@@ -24,7 +24,8 @@ function CityText({} : CityTextProps) {
         {
             mapWorld.map((row, z) => {
                 return row.map((item,x) => {
-                    return <BuildingText j
+                    return <BuildingText
+                        key={`${x}_${z}`}
                         position={[x * spacingBetweenBuilding,0,z * spacingBetweenBuilding]}
                         textNumber={item}
                         text={generateWords(item)}
