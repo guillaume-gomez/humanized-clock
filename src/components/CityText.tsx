@@ -1,5 +1,5 @@
 import BuildingText from "./BuildingText";
-import { Plane, Box } from '@react-three/drei';
+import { Box } from '@react-three/drei';
 import { generateWords } from "../numberToWord";
 
 

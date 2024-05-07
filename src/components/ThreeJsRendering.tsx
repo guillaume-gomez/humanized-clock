@@ -1,4 +1,4 @@
-import { useRef , useState, Suspense, MutableRefObject, useEffect } from 'react';
+import { useRef , useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center, Grid, Stars } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";

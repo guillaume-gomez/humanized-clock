@@ -11,9 +11,6 @@ const TENTHS_LESS_THAN_HUNDRED = [
 ];
 
 export function generateWords(number: number): string {
-    var remainder, word,
-        words = arguments[1];
-
     if (number === 0 || number < 0) {
         return 'zero';
     }else if (number < 20) {
