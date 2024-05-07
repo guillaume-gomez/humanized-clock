@@ -1,4 +1,5 @@
 import BuildingText from "./BuildingText";
+import { Plane, Box } from '@react-three/drei';
 import { generateWords } from "../numberToWord";
 
 
@@ -18,22 +19,28 @@ const mapWorld = [
 interface CityTextProps {}
 
 function CityText({} : CityTextProps) {
+    const size = 2;
     const spacingBetweenBuilding = 10.0;
     return(
-        <group>
-        {
-            mapWorld.map((row, z) => {
-                return row.map((item,x) => {
-                    return <BuildingText
-                        key={`${x}_${z}`}
-                        position={[x * spacingBetweenBuilding,0,z * spacingBetweenBuilding]}
-                        textNumber={item}
-                        text={generateWords(item)}
-                    />
+        <>
+            <Box args={[10*spacingBetweenBuilding,2,7*spacingBetweenBuilding]} position={[0,-1,0]} material-color="hotpink" />
+            <group position={[-45,0,-30]}>
+            {
+                mapWorld.map((row, z) => {
+                    return row.map((item,x) => {
+                        console.log(x, ", ", z)
+                        return <BuildingText
+                            key={`${x}_${z}`}
+                            size={size}
+                            position={[x * spacingBetweenBuilding,0,z * spacingBetweenBuilding]}
+                            textNumber={item}
+                            text={generateWords(item)}
+                        />
+                    })
                 })
-            })
-        }
-        </group>
+            }
+            </group>
+        </>
     );
 }
 

@@ -7,33 +7,13 @@ import { humanizedClockInFrench } from "../humanizedClock";
 import BuildingText from "./BuildingText";
 
 interface ThreejsRenderingProps {
+  date: Date;
 }
 //https://youtube.com/shorts/3pORYUBFSAc?si=26LkjHW-K_GXYi5r
 
-function ThreejsRendering({} : ThreejsRenderingProps) {
+function ThreejsRendering({date } : ThreejsRenderingProps) {
   const cameraControlRef = useRef<CameraControls|null>(null);
   const containerCanvasRef = useRef<HTMLDivElement>(null);
-  const [date, setDate] = useState<Date>(new Date(Date.now()));
-  const animationRef : MutableRefObject<number | undefined> = useRef<number | undefined>(undefined);
-  const previousTimeRef = useRef<number|undefined>(undefined);
- 
-  //those function should be above to avoid to many rerenders
-  /*function animate(time: number) {
-    if (previousTimeRef.current != undefined) {
-      setDate(new Date(Date.now()));
-    }
-    previousTimeRef.current = time;
-    animationRef.current = requestAnimationFrame(animate);
-  }
-
-   useEffect(() => {
-    requestAnimationFrame(animate);
-    return () => {
-      if(animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, []);*/
 
 
   return (
@@ -58,7 +38,11 @@ function ThreejsRendering({} : ThreejsRenderingProps) {
               <LettersGrid jk dateHumanized={"il est " + humanizedClockInFrench(date)} />
             </Center>
             */}
-              {<CityText />}
+              {
+                <Center disableY>
+                  <CityText />
+                </Center>
+              }
             <Grid args={[100,100]} position={[0,0,0]} sectionColor={'blue'} cellColor='black' />
 
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>

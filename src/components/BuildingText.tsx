@@ -13,7 +13,7 @@ interface BuildingTextProps {
 const font = "/5Identification-Mono.json";
 const letterSpacing = 0.05;
 
-function BuildingText({text, textNumber, position, size = 3} : BuildingTextProps) {
+function BuildingText({text, textNumber, position, size = 1} : BuildingTextProps) {
     // allow us to get the size of a text 3D to compute the size of the box
     const refText = useRef(null);
     const refNumber = useRef(null);
@@ -56,8 +56,8 @@ function BuildingText({text, textNumber, position, size = 3} : BuildingTextProps
 
 
     return(
-        <group position={position} rotation={[0,0,-Math.PI/2]}>
-            <Box args={boxSize} position={[boxSize[0]/ 2, 0, 0]} material-color="hotpink"/>
+        <group position={[position[0], position[1] + textSize[1], position[2]]} rotation={[0,0,-Math.PI/2]}>
+            <Box args={boxSize} position={[boxSize[0]/ 2, 0, 0]} material-color="black"/>
             <Text3D
                 ref={refText}
                 letterSpacing={letterSpacing}
@@ -106,8 +106,8 @@ function BuildingText({text, textNumber, position, size = 3} : BuildingTextProps
                 letterSpacing={0}
                 size={size * 0.60}
                 font={font}
-                position={[0,-numberSize[0]/2, -numberSize[2]/2]}
-                rotation={[0,-Math.PI/2,0]}
+                position={[0,-numberSize[0]/2, numberSize[2]/2]}
+                rotation={[0,-Math.PI/2,Math.PI/2]}
             >
                 {textNumber}
                 <meshStandardMaterial color={"orange"} />
