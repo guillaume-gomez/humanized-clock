@@ -1,6 +1,6 @@
 import { useRef , useState, Suspense, MutableRefObject, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center, Grid, Stars,Box } from '@react-three/drei';
+import { CameraControls, Stats, GizmoHelper, GizmoViewport, Center, Grid, Stars } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";
 import CityText from "./CityText";
 import { humanizedClockInFrench } from "../humanizedClock";
@@ -54,12 +54,12 @@ function ThreejsRendering({} : ThreejsRenderingProps) {
             <color attach="background" args={['#c0d6e9']} />
             {/*<Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />*/}
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
-            <Box args={[2,2,2]} position={[0, 0.0, 0]} material-color="hotpink"/>
-            <Center>
-              {/*<LettersGrid jk dateHumanized={"il est " + humanizedClockInFrench(date)} />*/}
-              {<CityText />}
+            {/*<Center>
+              <LettersGrid jk dateHumanized={"il est " + humanizedClockInFrench(date)} />
             </Center>
-            <Grid args={[5, 5]} position={[0,0,0]} sectionColor={'blue'} cellColor='black' />
+            */}
+              {<CityText />}
+            <Grid args={[100,100]} position={[0,0,0]} sectionColor={'blue'} cellColor='black' />
 
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
