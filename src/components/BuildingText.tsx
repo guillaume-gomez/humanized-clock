@@ -20,8 +20,20 @@ interface BuildingTextProps {
 
 }
 
+function verticalizeText(text: string ): string {
+    const textArray = text.split('').map((character, position) => {
+        if(character === ' ' || position === 0) {
+            return character
+        } else {
+            return "\n" + character;
+        }
+    });
+
+    return textArray.join('');
+}
 
 const letterSpacing = 0.05;
+const offset = 0.7; // due to verticalize text
 
 function BuildingText({text, textNumber, position, size = 1, highlight = false} : BuildingTextProps) {
     // allow us to get the size of a text 3D to compute the size of the box
@@ -33,10 +45,10 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
 
     //create geometry and material to reuse it
     const color = highlight ? 0xFDDE55 : "black";
-    const textMaterial = useMemo(() => new MeshStandardMaterial({color: color}), [color]);
+    const textMaterial = useMemo(() => new MeshStandardMaterial({color: color, emissive: color, toneMapped: false, emissiveIntensity: highlight ? 2 : 0 }), [highlight, color]);
 
     const font = new FontLoader().parse(Myfont);
-    const geometry = useMemo(() => new TextGeometry(text, {font, size, letterSpacing, height:0.2}), [text]);
+    const geometry = useMemo(() => new TextGeometry(verticalizeText(text), {font, size, letterSpacing, height:0.2}), [text]);
 
     useEffect(() => {
         if(refText.current) {
@@ -62,6 +74,7 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
     }, [refNumber.current, textNumber]);
 
 
+    console.log(textSize)
 
 
     return(
@@ -70,37 +83,46 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
 
             <mesh
                 ref={refText}
-                position={[0,-textSize[0]/2, size ]}
+                position={[textSize[0] + offset,-textSize[0]/2, textSize[0]/2 ]}
                 material={textMaterial}
                 geometry={geometry}
-            />
+                rotation={[0,0,Math.PI/2]}
+            >
+                {/*<meshStandardMaterial color={"green"} />*/}
+            </mesh>
 
             <mesh
                 ref={refText}
-                rotation={[-Math.PI, 0,0]}
-                position={[0,textSize[0]/2, -size - textSize[2]]}
+                rotation={[-Math.PI, 0,Math.PI/2]}
+                position={[textSize[0]+ offset,textSize[0]/2, -textSize[0]/2]}
                 material={textMaterial}
                 geometry={geometry}
-            />
+            >
+               {/* <meshStandardMaterial color={"blue"} />*/}
+            </mesh>
 
             <mesh
-                position={[0,size +textSize[2],textSize[0]/2]}
-                rotation={[-Math.PI/2,0,0]}
+                position={[textSize[0]+offset,textSize[0]/2,textSize[0]/2]}
+                rotation={[-Math.PI/2,0,Math.PI/2]}
                 material={textMaterial}
                 geometry={geometry}
-            />
+            >
+                {/*<meshStandardMaterial color={"orange"} />*/}
+            </mesh>
 
             <mesh
-                position={[0,-size,-textSize[0]/2]}
-                rotation={[Math.PI/2, 0, 0]}
+                position={[textSize[0]+ offset,-textSize[0]/2,-textSize[0]/2]}
+                rotation={[Math.PI/2, 0, Math.PI/2]}
                 material={textMaterial}
                 geometry={geometry}
-            />
+            >
+                {/*<meshStandardMaterial color={"red"} />*/}
+            </mesh>
 
             <Text3D
                 ref={refNumber}
                 letterSpacing={0}
-                size={size * 0.60}
+                size={size * 0.45}
                 font={Myfont}
                 position={[0,-numberSize[0]/2, numberSize[2]/2]}
                 rotation={[0,-Math.PI/2,Math.PI/2]}
