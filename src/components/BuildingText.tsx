@@ -42,11 +42,6 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
         if(refText.current) {
             // Compute the bounding box
             let bbox = new Box3().setFromObject(refText.current);
-            // Init your size variable
-            const bboxSize = new Vector3(bbox);
-            // Get the size
-            bbox.getSize(bboxSize);
-
             const width = bbox.max.x - bbox.min.x;
             const height = bbox.max.y - bbox.min.y;
             const depth = bbox.max.z - bbox.min.z;
