@@ -22,7 +22,7 @@ interface BuildingTextProps {
 
 function verticalizeText(text: string ): string {
     const textArray = text.split('').map((character, position) => {
-        if(character === ' ' || position === 0) {
+        if(position === 0) {
             return character
         } else {
             return "\n" + character;

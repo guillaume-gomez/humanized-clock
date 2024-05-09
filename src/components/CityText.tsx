@@ -1,12 +1,14 @@
+
 import BuildingText from "./BuildingText";
 import { Box } from '@react-three/drei';
 import { generateWords } from "../numberToWord";
+import { memo } from 'react';
 
 
 function arrayList(offset: number) {
     return Array.from({length: 10}, (_, i) => i + offset);
 }
-const mapWorld = [
+const mapWorldMinutesAndSeconds = [
     arrayList(0),
     arrayList(10),
     arrayList(20),
@@ -16,30 +18,85 @@ const mapWorld = [
     [60],
 ]
 
-interface CityTextProps {}
+const mapWorldHours = [
+    arrayList(0),
+    arrayList(10),
+    [20, 21,22,23,24]
+]
 
-function CityText({} : CityTextProps) {
-    const size = 2;
-    const spacingBetweenBuilding = 10.0;
-    return(
-        <>
-            <Box args={[10*spacingBetweenBuilding,2,7*spacingBetweenBuilding]} position={[0,-1,0]} material-color="hotpink" />
-            <group position={[-45,0,-30]}>
+interface CityTextProps {
+    minutes: number;
+    hour: number;
+    seconds: number;
+}
+
+// constant for the whole city
+const SIZE = 2;
+const SPACE_BETWEEN_BUILDING = 10.0;
+
+
+interface SecondsMinutesBlockProps {
+    duration: number;
+    x: number;
+}
+const SecondsMinutesBlockMemo = memo(function SecondsMinutesBlock({duration, x} : SecondsMinutesBlockProps) {
+return (
+    <group position={[x,0,-44]}>
+        {
+            mapWorldMinutesAndSeconds.map((row, x) => {
+                return row.map((item,z) => {
+
+                    return <BuildingText
+                        key={`${x}_${z}_1`}
+                        size={SIZE}
+                        position={[x * SPACE_BETWEEN_BUILDING,0,z * SPACE_BETWEEN_BUILDING]}
+                        textNumber={item}
+                        highlight={item === duration}
+                        text={generateWords(item)}
+                    />
+                })
+            })
+        }
+        </group>
+    );
+});
+
+interface HourBlockProps {
+    hour: number;
+}
+
+const HourBlockMemo = memo(function HourBlock({hour} : HourBlockProps) {
+    return (
+        <group position={[-90,0,-44]}>
             {
-                mapWorld.map((row, z) => {
-                    return row.map((item,x) => {
-                        console.log(x, ", ", z)
+                mapWorldHours.map((row, x) => {
+                    return row.map((item,z) => {
+
                         return <BuildingText
-                            key={`${x}_${z}`}
-                            size={size}
-                            position={[x * spacingBetweenBuilding,0,z * spacingBetweenBuilding]}
+                            key={`${x}_${z}_3`}
+                            size={SIZE}
+                            position={[x * SPACE_BETWEEN_BUILDING,0,z * SPACE_BETWEEN_BUILDING]}
                             textNumber={item}
+                            highlight={item === hour}
                             text={generateWords(item)}
                         />
                     })
                 })
             }
-            </group>
+        </group>
+    );
+})
+
+function CityText({ hours, minutes, seconds} : CityTextProps) {
+    const widthBoxHour = (mapWorldHours.length + 2 )*SPACE_BETWEEN_BUILDING + SIZE*2 + 0.5;
+    const widthBoxMinutesAndSeconds = (mapWorldMinutesAndSeconds.length + 2) * SPACE_BETWEEN_BUILDING + SIZE*2 + 0.5;
+    const heightBox = 12*SPACE_BETWEEN_BUILDING;
+    return(
+        <>
+            <Box args={[widthBoxHour + 2*widthBoxMinutesAndSeconds,2, heightBox]} position={[0,-1,0]} material-color="grey" />
+            <SecondsMinutesBlockMemo duration={seconds} x={35} />
+            <SecondsMinutesBlockMemo duration={minutes} x={-45} />
+            <HourBlockMemo hour={hours} />
         </>
     );
 }
