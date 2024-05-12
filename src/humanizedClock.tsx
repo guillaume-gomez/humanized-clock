@@ -179,7 +179,7 @@ export const Letters = [
     "moinsoledix",
     "etrquartpmd",
     "vingt cinqu",
-    "etsdemiepam"
+    "etsdemiepam",
 ]
 
 export function fromHumanizedWordToLetters(word: string) {
