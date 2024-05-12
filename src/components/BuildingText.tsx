@@ -73,10 +73,6 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
         }
     }, [refNumber.current, textNumber]);
 
-
-    console.log(textSize)
-
-
     return(
         <group position={[position[0], position[1] + textSize[1], position[2]]} rotation={[0,0,-Math.PI/2]}>
             <Box args={boxSize} position={[boxSize[0]/ 2, 0, 0]} material-color={"black"}/>
