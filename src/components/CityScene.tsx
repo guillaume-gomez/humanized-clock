@@ -10,7 +10,7 @@ function CityScene({date} : CitySceneProps) {
     const cameraControlRef = useRef<CameraControls>(null);
     useEffect(() => {
         if(cameraControlRef.current) {
-            cameraControlRef.current.setLookAt(0, 100, 200,0, 0, 0, true);
+            cameraControlRef.current.setLookAt(0, 100, 300,0, 0, 0, true);
         }
     }, []);
 
