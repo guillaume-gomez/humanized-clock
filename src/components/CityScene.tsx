@@ -18,7 +18,7 @@ function CityScene({date} : CitySceneProps) {
         <>
             <ambientLight intensity={0.8} />
             <directionalLight position={[10, 10, 10]} />
-            <color attach="background" args={['#111']} />
+            <color attach="background" args={['#222']} />
 
             <Bounds>
                 <Center disableY>
