@@ -179,7 +179,7 @@ export const Letters = [
     "moinsoledix",
     "etrquartpmd",
     "vingt cinqu",
-    "etsdemiepam"
+    "etsdemiepam",
 ]
 
 export function fromHumanizedWordToLetters(word: string) {
@@ -236,7 +236,7 @@ export function fromHumanizedWordToLetters(word: string) {
 }
 
 
-export function humanizedClockInFrench(date: Datetime) : [string, string] {
+export function humanizedClockInFrench(date: Date) : string {
   const hour = date.getHours();
   const minutes = date.getMinutes();
 
@@ -251,7 +251,7 @@ export function humanizedClockInFrench(date: Datetime) : [string, string] {
 
 
 
-export function humanizedClock(date: Datetime, locale: string = "fr") : [string, string] {
+export function humanizedClock(date: Date) : [string, string] {
   const hour = date.getHours();
   const minutes = date.getMinutes();
 
