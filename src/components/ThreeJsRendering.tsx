@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Stats } from '@react-three/drei';
 import ClockScene from "./ClockScene";
 import CityScene from "./CityScene";
+import CitySceneSimplified from "./CitySceneSimplified";
 
 interface ThreejsRenderingProps {
   date: Date;
@@ -29,7 +30,11 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
             {
               clockScene ?
                 <ClockScene date={date} /> :
-                <CityScene date={date} />
+                <CitySceneSimplified
+                  seconds={date.getSeconds()}
+                  minutes={date.getMinutes()}
+                  hours={date.getHours()}
+                />
             }
           </Suspense>
         </Canvas>
