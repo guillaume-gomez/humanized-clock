@@ -6,7 +6,7 @@ import { generateWords } from "../numberToWord";
 
 interface CitySceneSimplifiedProps {
     minutes: number;
-    hour: number;
+    hours: number;
     seconds: number;
 }
 
