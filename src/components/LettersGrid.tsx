@@ -6,16 +6,17 @@ import find from "lodash/find";
 import { Letters, fromHumanizedWordToLetters } from "../humanizedClock";
 
 interface LettersGridProps {
-    dateHumanized: string;
+    minutes: number;
+    hours: number;
 }
 
-function fromHumanizedToLetters(words: string) {
-    const positions = words.split(' ').map(word => fromHumanizedWordToLetters(word));
+function fromHumanizedToLetters(words: string, minute: boolean) {
+    const positions = words.split(' ').map(word => fromHumanizedWordToLetters(word, minute));
     return flatten(positions);
 }
 
-function LettersGrid({dateHumanized} : LettersGridProps) {
-    const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
+function LettersGrid({minutes, hours} : LettersGridProps) {
+    const letterPositions = useMemo(() => [...fromHumanizedToLetters(fromHourToFrench(hours), false),...fromHumanizedToLetters(fronMinuteToFrench(minutes), true)], [hours, minutes]);
     const groupRef = useRef(null);
     const [geometrySize, setGeometrySize] = useState<[number, number, number]>([0,0,0]);
 

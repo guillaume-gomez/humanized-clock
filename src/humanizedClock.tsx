@@ -182,7 +182,7 @@ export const Letters = [
     "etsdemiepam",
 ]
 
-export function fromHumanizedWordToLetters(word: string) {
+export function fromHumanizedWordToLetters(word: string, minute: boolean) {
     switch(word) {
         case "il":
             return [{x:0, y:0}, {x:1, y:0}];
@@ -205,7 +205,11 @@ export function fromHumanizedWordToLetters(word: string) {
         case "six":
             return [{x:4, y:3}, {x:5, y:3}, {x:6, y:3}];
         case "cinq":
-            return [{x:7, y:3}, {x:8, y:3}, {x:9, y:3}, {x:10, y:3}];
+            if(minute) {
+              return [{x:6, y:8}, {x:7, y:8}, {x:8, y:8}, {x:9, y:8}];
+            } else {
+              return [{x:7, y:3}, {x:8, y:3}, {x:9, y:3}, {x:10, y:3}];
+            }
         case "midi":
             return [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}];
         case "minuit":
@@ -221,7 +225,11 @@ export function fromHumanizedWordToLetters(word: string) {
         case "le":
             return [{x:6, y:6}, {x:7, y:6}];
         case "dix":
-            return [{x:8, y:6}, {x:9, y:6}, {x:10, y:6}];
+            if(minute) {
+              return [{x:8, y:6}, {x:9, y:6}, {x:10, y:6}];
+            } else {
+              return [{x:2, y:4}, {x:3, y:4}, {x:4, y:4}];
+            }
         case "et":
             return [{x:0, y:7}, {x:1, y:7}];
         case "quart":
