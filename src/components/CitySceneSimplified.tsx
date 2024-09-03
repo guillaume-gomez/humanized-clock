@@ -1,8 +1,11 @@
-import { useRef, useEffect } from "react";
-import { CameraControls,  GizmoHelper, GizmoViewport, Center, Grid, Bounds } from '@react-three/drei';
+import { useRef, useEffect, useMemo } from "react";
+import { CameraControls,  GizmoHelper, GizmoViewport, Center, Grid, Bounds, Text3D } from '@react-three/drei';
 import BuildingText from "./BuildingText";
 import { Box } from '@react-three/drei';
 import { generateWords } from "../numberToWord";
+import { MeshStandardMaterial } from "three";
+import Myfont from "../5Identification-Mono.json"
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
 interface CitySceneSimplifiedProps {
     minutes: number;
@@ -15,6 +18,10 @@ const SPACE_BETWEEN_BUILDING = 10;
 
 function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProps) {
     const cameraControlRef = useRef<CameraControls>(null);
+
+    const font = new FontLoader().parse(Myfont);
+    const textMaterial = useMemo(() => new MeshStandardMaterial({color: "orange", emissive: "red", toneMapped: false, emissiveIntensity: 2  }), []);
+
     useEffect(() => {
         if(cameraControlRef.current) {
             cameraControlRef.current.setLookAt(0, 40, 50,0, 0, 0, true);
@@ -29,7 +36,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
             <Bounds>
                 <Center disableY>
-                    <Box args={[20, 1, 20]} position={[0,-1,0]} material-color="orange" />
+                    <Box args={[20, 1, 20]} position={[0,-1,0]} material-color="purple" />
                     <BuildingText
                         size={SIZE}
                         position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0,-SPACE_BETWEEN_BUILDING+ 2*SIZE]}
@@ -48,11 +55,23 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
                     <BuildingText
                         size={SIZE}
-                        position={[SPACE_BETWEEN_BUILDING - 2*SIZE,0, +SPACE_BETWEEN_BUILDING- 2*SIZE]}
+                        position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0, +SPACE_BETWEEN_BUILDING- 2*SIZE]}
                         textNumber={hours}
                         highlight={true}
                         text={generateWords(hours)}
                     />
+
+                    <Text3D
+                        /*ref={refNumber}*/
+                        letterSpacing={0}
+                        size={2}
+                        font={Myfont}
+                        position={[0,0, 5 ]}
+                        rotation={[0,0,0]}
+                        material={textMaterial}
+                    >
+                        {hours > 1 ? "hours" : "hour"}
+                    </Text3D>
                </Center>
           </Bounds>
 
