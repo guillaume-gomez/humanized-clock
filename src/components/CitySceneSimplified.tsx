@@ -28,6 +28,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
         }
     }, []);
 
+
     return (
         <>
             <ambientLight intensity={0.8} />
@@ -67,11 +68,22 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                         letterSpacing={0}
                         size={2}
                         font={Myfont}
-                        position={[0,0, 5 ]}
+                        position={[-4,1, 11 ]}
                         rotation={[0,0,0]}
                         material={textMaterial}
                     >
                         {hours > 1 ? "hours" : "hour"}
+                    </Text3D>
+                    <Text3D
+                        /*ref={refNumber}*/
+                        letterSpacing={0}
+                        size={2}
+                        font={Myfont}
+                        position={[10, 1, 11 ]}
+                        rotation={[0,Math.PI/2,0]}
+                        material={textMaterial}
+                    >
+                        {minutes > 1 ? "minutes" : "minute"}
                     </Text3D>
                </Center>
           </Bounds>
