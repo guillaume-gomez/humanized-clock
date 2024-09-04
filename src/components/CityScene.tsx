@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { CameraControls,  GizmoHelper, GizmoViewport, Center, Grid, Bounds } from '@react-three/drei';
+import { CameraControls,  GizmoHelper, GizmoViewport, Center, Grid, Bounds, Stars } from '@react-three/drei';
 import CityText from "./CityText";
 
 interface CitySceneProps {
@@ -19,6 +19,7 @@ function CityScene({date} : CitySceneProps) {
             <ambientLight intensity={0.8} />
             <directionalLight position={[10, 10, 10]} />
             <color attach="background" args={['#222']} />
+            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
 
             <Bounds>
                 <Center disableY>
