@@ -1,6 +1,6 @@
 import { useRef , useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Stats } from '@react-three/drei';
+import { Stats, Stage } from '@react-three/drei';
 import ClockScene from "./ClockScene";
 import CityScene from "./CityScene";
 import CitySceneSimplified from "./CitySceneSimplified";
@@ -11,7 +11,7 @@ interface ThreejsRenderingProps {
 
 function ThreejsRendering({date } : ThreejsRenderingProps) {
   const containerCanvasRef = useRef<HTMLDivElement>(null);
-  const [clockScene, setClockScene] = useState<boolean>(false);
+  const [clockScene, setClockScene] = useState<boolean>(true);
 
   return (
       <div>
@@ -26,7 +26,9 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
           dpr={window.devicePixelRatio}
         >
           <Suspense fallback={null}>
+            
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
+            <Stage>
             {
               clockScene ?
                 <ClockScene date={date} /> :
@@ -36,6 +38,7 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
                   hours={date.getHours()}
                 />
             }
+          </Stage>
           </Suspense>
         </Canvas>
       </div>
