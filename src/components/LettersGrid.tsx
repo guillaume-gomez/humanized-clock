@@ -33,7 +33,7 @@ function LettersGrid({dateHumanized} : LettersGridProps) {
 
     function computeLine(line: string, y: number) {
         return line.split('').map((letter, x) => {
-            const color = find(letterPositions, (item) => item.x === x && item.y === y ) ? "blue" : "red";
+            const color = find(letterPositions, (item) => item.x === x && item.y === y ) ? "#E9B872" : "#6494AA";
             return (
                 <Letter3D 
                     key={`${x}_${y}`}
@@ -57,7 +57,7 @@ function LettersGrid({dateHumanized} : LettersGridProps) {
         <group>
             <mesh position={[geometrySize[0]/2, -geometrySize[1]/2 +0.5,-0.25]} >
                 <boxGeometry args={[geometrySize[0] + 2, geometrySize[1] + 2, geometrySize[2]]}/>
-                <meshStandardMaterial color={"green"} />
+                <meshStandardMaterial color={"#083D77"} />
             </mesh>
             <group ref={groupRef}>
                 {computeGrid()}
