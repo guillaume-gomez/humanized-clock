@@ -1,6 +1,6 @@
 import { useRef , useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Stats, Stage } from '@react-three/drei';
+import { Stats, Stage, CameraControls } from '@react-three/drei';
 import ClockScene from "./ClockScene";
 import CityScene from "./CityScene";
 import CitySceneSimplified from "./CitySceneSimplified";
@@ -22,7 +22,7 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
         style={{height: '100vh', width: '100%'}}
       >
         <Canvas
-          camera={{ position: [0, 0, 5], fov: 35, far: 1000 }}
+          camera={{ position: [0, 0, 5], fov: 35, far: 500 }}
           dpr={window.devicePixelRatio}
         >
           <Suspense fallback={null}>
@@ -40,6 +40,16 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
             }
           </Stage>
           </Suspense>
+          <CameraControls
+            makeDefault
+            smoothTime={1.0}
+            minPolarAngle={0.75}
+            maxPolarAngle={Math.PI / 2.5}
+            minAzimuthAngle={-Math.PI}
+            maxAzimuthAngle={Math.PI}
+            minDistance={200}
+            maxDistance={500}
+          />
         </Canvas>
       </div>
     </div>
