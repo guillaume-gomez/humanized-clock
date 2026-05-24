@@ -42,7 +42,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                     <BuildingText
                         size={SIZE}
                         position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0,-SPACE_BETWEEN_BUILDING+ 2*SIZE]}
-                        textNumber={seconds}
+                        textNumber={seconds.toString()}
                         highlight={true}
                         text={generateWords(seconds)}
                     />
@@ -50,7 +50,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                     <BuildingText
                         size={SIZE}
                         position={[SPACE_BETWEEN_BUILDING - 2*SIZE,0, -SPACE_BETWEEN_BUILDING+ 2*SIZE]}
-                        textNumber={minutes}
+                        textNumber={minutes.toString()}
                         highlight={true}
                         text={generateWords(minutes)}
                     />
@@ -58,7 +58,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                     <BuildingText
                         size={SIZE}
                         position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0, +SPACE_BETWEEN_BUILDING- 2*SIZE]}
-                        textNumber={hours}
+                        textNumber={hours.toString()}
                         highlight={true}
                         text={generateWords(hours)}
                     />

@@ -1,7 +1,6 @@
-import { MeshStandardMaterial } from "three";
+import { MeshStandardMaterial, Box3 } from "three";
 import { Text3D, Box } from '@react-three/drei';
 import { useRef, useEffect, useState, useMemo } from "react";
-import { type Box3 } from 'three';
 import { extend } from '@react-three/fiber'
 import Myfont from "../5Identification-Mono.json"
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';

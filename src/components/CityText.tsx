@@ -50,7 +50,7 @@ return (
                         key={`${x}_${z}_1`}
                         size={SIZE}
                         position={[x * SPACE_BETWEEN_BUILDING,0,z * SPACE_BETWEEN_BUILDING]}
-                        textNumber={item}
+                        textNumber={item.toString()}
                         highlight={item === duration}
                         text={generateWords(item)}
                     />
@@ -76,7 +76,7 @@ const HourBlockMemo = memo(function HourBlock({hour} : HourBlockProps) {
                             key={`${x}_${z}_3`}
                             size={SIZE}
                             position={[x * SPACE_BETWEEN_BUILDING,0,z * SPACE_BETWEEN_BUILDING]}
-                            textNumber={item}
+                            textNumber={item.toString()}
                             highlight={item === hour}
                             text={generateWords(item)}
                         />
