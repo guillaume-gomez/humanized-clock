@@ -15,6 +15,7 @@ function fromHumanizedToLetters(words: string) {
 }
 
 function LettersGrid({dateHumanized} : LettersGridProps) {
+    console.log(dateHumanized)
     const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
     const groupRef = useRef(null);
     const [geometrySize, setGeometrySize] = useState<[number, number, number]>([0,0,0]);
@@ -33,14 +34,16 @@ function LettersGrid({dateHumanized} : LettersGridProps) {
 
     function computeLine(line: string, y: number) {
         return line.split('').map((letter, x) => {
-            const color = find(letterPositions, (item) => item.x === x && item.y === y ) ? "#E9B872" : "#6494AA";
+            const isHightLight = find(letterPositions, (item) => item.x === x && item.y === y )
+            const color = isHightLight ? "#E9B872" : "#6494AA";
+            const opacity = isHightLight ? 1.0 : 0.75;
             return (
                 <Letter3D 
                     key={`${x}_${y}`}
                     letter={letter}
-                    position={[x,-y,0]}
+                    position={[x,-y, -0.3]}
                     color={color}
-
+                    opacity={opacity}
                 />
             );
         });
