@@ -3,6 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import { Stats, Stage, CameraControls } from '@react-three/drei';
 import ClockScene from "./ClockScene";
 // import CityScene from "./CityScene";
+import { EffectComposer, Bloom, /*Grid,*/ ToneMapping, TiltShift } from '@react-three/postprocessing';
+import { BlendFunction, ToneMappingMode } from 'postprocessing';
 import CitySceneSimplified from "./CitySceneSimplified";
 
 interface ThreejsRenderingProps {
@@ -15,7 +17,7 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
 
   return (
       <div>
-      <p><span>La date</span> {date.toString()}</p>
+      <p><span>La date est </span> {date.toString()}</p>
       <div
          className="flex flex-col gap-5 w-full h-screen"
         ref={containerCanvasRef}
@@ -40,6 +42,16 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
             }
           </Stage>
           </Suspense>
+          <EffectComposer enableNormalPass={false}>
+            <Bloom mipmapBlur luminanceThreshold={1.0} />
+            {/*<ChromaticAberration
+              blendFunction={BlendFunction.NORMAL} // blend mode
+              offset={[0.001, 0.001]} // color offset
+            />*/}
+            {/*<Grid scale={2} lineWidth={1}  blendFunction={BlendFunction.OVERLAY}/>*/}
+            <TiltShift offset={0.30} focusArea={0.50} feather={0.5}  blendFunction={BlendFunction.NORMAL} />
+            <ToneMapping  mode={ToneMappingMode.UNCHARTED2} />
+          </EffectComposer>
           <CameraControls
             makeDefault
             smoothTime={1.0}
