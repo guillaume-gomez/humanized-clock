@@ -21,7 +21,14 @@ function ClockScene({date} : ClockSceneProps) {
             <color attach="background" args={['#c0d6e9']} />
 
             <Center>
-              <LettersGrid dateHumanized={"il est " + humanizedClockInFrench(date)} />
+              <LettersGrid
+                dateHumanized={"il est " + humanizedClockInFrench(date)}
+                theme={{
+                    hightlight: "#F3A712",
+                    color: "#E4572E",
+                    background: "#29335C"
+                }}
+              />
             </Center>
 
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
