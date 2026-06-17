@@ -1,8 +1,9 @@
 import { useMemo, useRef, useEffect, useState } from "react";
-import { Box3 } from "three";
+import { Box3, TextureLoader } from "three";
 import Letter3D from "./Letter3D";
 import flatten from "lodash/flatten";
 import find from "lodash/find";
+import { useLoader } from '@react-three/fiber';
 import { Letters, fromHumanizedWordToLetters } from "../humanizedClock";
 
 interface LettersGridProps {
@@ -27,7 +28,12 @@ const defaultTheme = {
 
 function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) {
     const { highlight, color, background } = theme;
-
+    const [displacementMap, normalMap, aoMap, map] = useLoader(TextureLoader, [
+        'white-marble-unity/white-marble_height.png',
+        'white-marble-unity/white-marble_normal-ogl.png',
+        'white-marble-unity/white-marble_ao.png',
+        'white-marble-unity/white-marble_albedo.png',
+    ]);
 
     const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
     const groupRef = useRef(null);
@@ -73,7 +79,14 @@ function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) 
         <group position={[0, 1, 0]}>
             <mesh position={[geometrySize[0]/2, -geometrySize[1]/2 +0.5,-0.25]} >
                 <boxGeometry args={[geometrySize[0] + 2, geometrySize[1] + 2, geometrySize[2]]}/>
-                <meshStandardMaterial color={background} />
+                <meshStandardMaterial
+                    //color={background}
+                    displacementScale={0}
+                    map={map}
+                    displacementMap={displacementMap}
+                    normalMap={normalMap}
+                    aoMap={aoMap}
+                />
             </mesh>
             <group ref={groupRef}>
                 {computeGrid()}
