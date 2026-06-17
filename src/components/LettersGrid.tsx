@@ -11,7 +11,8 @@ interface LettersGridProps {
     theme?: {
         highlight: string;
         color: string;
-        background: string;
+        background?: string;
+        texturePath?: string;
     }
 }
 
@@ -23,16 +24,17 @@ function fromHumanizedToLetters(words: string) {
 const defaultTheme = {
   highlight: "#E9B872", 
   color: "#6494AA",
-  background: "#083D77"
+  background: "#083D77",
+  texturePath: "white-marble-unity/white-marble"
 }
 
 function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) {
-    const { highlight, color, background } = theme;
+    const { highlight, color, background, texturePath } = theme;
     const [displacementMap, normalMap, aoMap, map] = useLoader(TextureLoader, [
-        'white-marble-unity/white-marble_height.png',
-        'white-marble-unity/white-marble_normal-ogl.png',
-        'white-marble-unity/white-marble_ao.png',
-        'white-marble-unity/white-marble_albedo.png',
+        `textures/${texturePath}_height.png`,
+        `textures/${texturePath}_normal-ogl.png`,
+        `textures/${texturePath}_ao.png`,
+        `textures/${texturePath}_albedo.png`,
     ]);
 
     const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
@@ -76,7 +78,7 @@ function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) 
     }
 
     return(
-        <group position={[0, 1, 0]}>
+        <group position={[0, 3, 0]}>
             <mesh position={[geometrySize[0]/2, -geometrySize[1]/2 +0.5,-0.25]} >
                 <boxGeometry args={[geometrySize[0] + 2, geometrySize[1] + 2, geometrySize[2]]}/>
                 <meshStandardMaterial

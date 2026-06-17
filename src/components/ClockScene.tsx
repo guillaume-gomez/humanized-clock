@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { CameraControls,  GizmoHelper, GizmoViewport, Center } from '@react-three/drei';
+import { CameraControls,  GizmoHelper, GizmoViewport } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";
 import { humanizedClockInFrench } from "../humanizedClock";
 
@@ -19,18 +19,14 @@ function ClockScene({date} : ClockSceneProps) {
             <ambientLight intensity={0.8} />
             <directionalLight position={[10, 10, 10]} />
             <color attach="background" args={['#c0d6e9']} />
-
-            <Center>
-              <LettersGrid
-                dateHumanized={"il est " + humanizedClockInFrench(date)}
-                theme={{
-                    hightlight: "#F3A712",
-                    color: "#E4572E",
-                    background: "#29335C"
-                }}
-              />
-            </Center>
-
+            <LettersGrid
+              dateHumanized={"il est " + humanizedClockInFrench(date)}
+              theme={{
+                  highlight: "#F3A712",
+                  color: "#111",
+                  texturePath: "white-marble-unity/white-marble"
+              }}
+            />
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
             </GizmoHelper>
