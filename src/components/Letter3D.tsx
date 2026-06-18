@@ -13,7 +13,7 @@ function Letter3D({letter, position, color = "white", opacity = 1.0} : Letter3DP
         <Text3D 
             letterSpacing={-0.06}
             size={0.5} 
-            font="/Satoshi-Variable.json"
+            font="/fonts/Satoshi-Variable.json"
             position={position}
             curveSegments={4}
             bevelThickness={color === "white" ? 0.05 : 0.015}

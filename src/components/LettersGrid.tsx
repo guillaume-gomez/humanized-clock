@@ -12,7 +12,7 @@ interface LettersGridProps {
         highlight: string;
         color: string;
         background?: string;
-        texturePath?: string;
+        texturePath: string;
     }
 }
 
@@ -82,9 +82,9 @@ function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) 
             <mesh position={[geometrySize[0]/2, -geometrySize[1]/2 +0.5,-0.25]} >
                 <boxGeometry args={[geometrySize[0] + 2, geometrySize[1] + 2, geometrySize[2]]}/>
                 <meshStandardMaterial
-                    //color={background}
-                    displacementScale={0}
                     map={map}
+                    color={background} /* fallback in case map is undefined */
+                    displacementScale={0}
                     displacementMap={displacementMap}
                     normalMap={normalMap}
                     aoMap={aoMap}
