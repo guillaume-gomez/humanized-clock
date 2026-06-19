@@ -7,6 +7,24 @@ interface ClockSceneProps{
     date: Date;
 }
 
+const THEMES = [
+ {
+  highlight: "#F3A712",
+  color: "#111",
+  texturePath: "white-marble-unity/white-marble"
+ },
+ {
+  highlight: "#F3A712",
+  color: "#111",
+  texturePath: "almond-speckled-granite-unity/almond-speckled-granite"//"white-marble-unity/white-marble"
+ },
+ {
+  highlight: "#F3A712",
+  color: "#111",
+  texturePath: "armani-marble-unity/armani-marble"
+ }
+]
+
 function ClockScene({date} : ClockSceneProps) {
     const cameraControlRef = useRef<CameraControls>(null);
     useEffect(() => {
@@ -21,11 +39,7 @@ function ClockScene({date} : ClockSceneProps) {
             <color attach="background" args={['#c0d6e9']} />
             <LettersGrid
               dateHumanized={"il est " + humanizedClockInFrench(date)}
-              theme={{
-                  highlight: "#F3A712",
-                  color: "#111",
-                  texturePath: "white-marble-unity/white-marble"
-              }}
+              theme={THEMES[2]}
             />
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
