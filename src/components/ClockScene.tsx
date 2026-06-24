@@ -27,6 +27,11 @@ const THEMES = [
   highlight: "#F3A712",
   color: "#AAA",
   texturePath: "gray-polished-granite-unity/gray-polished-granite"
+ },
+ {
+  highlight: "",
+  color: "#111",
+  texturePath: "stringy-marble-bl/stringy_marble"
  }
 ]
 
@@ -44,7 +49,7 @@ function ClockScene({date} : ClockSceneProps) {
             <color attach="background" args={['#c0d6e9']} />
             <LettersGrid
               dateHumanized={"il est " + humanizedClockInFrench(date)}
-              theme={THEMES[3]}
+              theme={THEMES[4]}
             />
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
