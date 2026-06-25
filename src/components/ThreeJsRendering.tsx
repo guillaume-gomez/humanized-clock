@@ -30,7 +30,7 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
           <Suspense fallback={null}>
             
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
-            <Stage>
+            <Stage shadows={false} adjustCamera={false}>
             {
               clockScene ?
                 <ClockScene date={date} /> :
