@@ -5,6 +5,7 @@ import { humanizedClockInFrench } from "../humanizedClock";
 
 interface ClockSceneProps{
     date: Date;
+    themeIndex: number;
 }
 
 const THEMES = [
@@ -35,7 +36,7 @@ const THEMES = [
  }
 ]
 
-function ClockScene({date} : ClockSceneProps) {
+function ClockScene({date, themeIndex} : ClockSceneProps) {
     const cameraControlRef = useRef<CameraControls>(null);
     useEffect(() => {
         if(cameraControlRef.current) {
@@ -49,7 +50,7 @@ function ClockScene({date} : ClockSceneProps) {
             <color attach="background" args={['#c0d6e9']} />
             <LettersGrid
               dateHumanized={"il est " + humanizedClockInFrench(date)}
-              theme={THEMES[4]}
+              theme={THEMES[themeIndex]}
             />
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
               <GizmoViewport labelColor="white" axisHeadScale={1} />
