@@ -11,9 +11,10 @@ interface ThreejsRenderingProps {
   date: Date;
 }
 
-function ThreejsRendering({date } : ThreejsRenderingProps) {
+function ThreejsRendering({date} : ThreejsRenderingProps) {
   const containerCanvasRef = useRef<HTMLDivElement>(null);
   const [clockScene, _setClockScene] = useState<boolean>(true);
+  const [themeIndex, _setThemeIndex] = useState<number>(5);
 
   return (
       <div>
@@ -28,12 +29,11 @@ function ThreejsRendering({date } : ThreejsRenderingProps) {
           dpr={window.devicePixelRatio}
         >
           <Suspense fallback={null}>
-            
             { import.meta.env.MODE === "development" ? <Stats/> : <></> }
             <Stage shadows={false} adjustCamera={false}>
             {
               clockScene ?
-                <ClockScene date={date} /> :
+                <ClockScene date={date} themeIndex={themeIndex} /> :
                 <CitySceneSimplified
                   seconds={date.getSeconds()}
                   minutes={date.getMinutes()}

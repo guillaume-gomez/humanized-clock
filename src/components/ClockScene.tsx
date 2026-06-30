@@ -33,6 +33,11 @@ const THEMES = [
   highlight: "",
   color: "#111",
   texturePath: "stringy-marble-bl/stringy_marble"
+ },
+ {
+  highlight: "",
+  color: "#111",
+  texturePath: "fleshy-granite1-unity/fleshy_granite1"
  }
 ]
 
