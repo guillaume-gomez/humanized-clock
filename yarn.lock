@@ -736,21 +736,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-spring/web@npm:^10.0.3":
-  version: 10.0.3
-  resolution: "@react-spring/web@npm:10.0.3"
-  dependencies:
-    "@react-spring/animated": "npm:~10.0.3"
-    "@react-spring/core": "npm:~10.0.3"
-    "@react-spring/shared": "npm:~10.0.3"
-    "@react-spring/types": "npm:~10.0.3"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/cafbf55991d68920e94419b5b081cfb0aea2ddfa193e984861ab53306365bf81152bce2861370f9b26d4027dd714e8acc0dfbd57bd2eda99e827c3212e22a51c
-  languageName: node
-  linkType: hard
-
 "@react-three/drei@npm:^10.7.7":
   version: 10.7.7
   resolution: "@react-three/drei@npm:10.7.7"
@@ -788,7 +773,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/fiber@npm:^9.5.0":
+"@react-three/fiber@npm:^9.6.1":
   version: 9.6.1
   resolution: "@react-three/fiber@npm:9.6.1"
   dependencies:
@@ -825,6 +810,21 @@ __metadata:
     react-native:
       optional: true
   checksum: 10c0/669d78d126ab61977356936d3a89ce0f15051ec4d49e130d009cdc1ee3f6e01763322d4ef0b2720852d0cb457595417aeffccc433b33abd1d07b23b891527ea2
+  languageName: node
+  linkType: hard
+
+"@react-three/postprocessing@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@react-three/postprocessing@npm:3.0.4"
+  dependencies:
+    maath: "npm:^0.6.0"
+    n8ao: "npm:^1.9.4"
+    postprocessing: "npm:^6.36.6"
+  peerDependencies:
+    "@react-three/fiber": ^9.0.0
+    react: ^19.0
+    three: ">= 0.156.0"
+  checksum: 10c0/7a9f6af37da29af6844bd8ad781ceafa2c2cee29954ccf6c41633b2afd4cf7da41eb668a62b3a942a35e400ac8c7685800394a96eed95dde9ec582decfdade5b
   languageName: node
   linkType: hard
 
@@ -1196,7 +1196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:*":
+"@types/three@npm:*, @types/three@npm:^0.184.1":
   version: 0.184.1
   resolution: "@types/three@npm:0.184.1"
   dependencies:
@@ -2606,12 +2606,13 @@ __metadata:
   resolution: "humanized-clock@workspace:."
   dependencies:
     "@react-spring/three": "npm:^10.0.3"
-    "@react-spring/web": "npm:^10.0.3"
     "@react-three/drei": "npm:^10.7.7"
-    "@react-three/fiber": "npm:^9.5.0"
+    "@react-three/fiber": "npm:^9.6.1"
+    "@react-three/postprocessing": "npm:^3.0.4"
     "@types/lodash": "npm:^4.17.0"
     "@types/react": "npm:^19.2.7"
     "@types/react-dom": "npm:^19.2.3"
+    "@types/three": "npm:^0.184.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
     "@typescript-eslint/parser": "npm:^7.2.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
@@ -2625,10 +2626,10 @@ __metadata:
     init: "npm:^0.1.2"
     lodash: "npm:^4.17.21"
     postcss: "npm:^8.4.38"
-    react: "npm:^19.2.0"
-    react-dom: "npm:^19.2.0"
+    react: "npm:^19.2.6"
+    react-dom: "npm:^19.2.6"
     tailwindcss: "npm:^3.4.3"
-    three: "npm:^0.183.2"
+    three: "npm:^0.184.0"
     typescript: "npm:^5.2.2"
     vite: "npm:^5.2.0"
     vite-plugin-checker: "npm:^0.6.4"
@@ -2994,6 +2995,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"maath@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "maath@npm:0.6.0"
+  peerDependencies:
+    "@types/three": ">=0.144.0"
+    three: ">=0.144.0"
+  checksum: 10c0/a9b716841d225338339fbe776c94e99f98136f24360e34c06698e2f1658bffc9b09321d2463e730810940de9801b73154de9afa6647595ae1d7b7662f4da6ef6
+  languageName: node
+  linkType: hard
+
 "make-dir@npm:^3.0.2":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -3092,6 +3103,16 @@ __metadata:
     object-assign: "npm:^4.0.1"
     thenify-all: "npm:^1.0.0"
   checksum: 10c0/103114e93f87362f0b56ab5b2e7245051ad0276b646e3902c98397d18bb8f4a77f2ea4a2c9d3ad516034ea3a56553b60d3f5f78220001ca4c404bd711bd0af39
+  languageName: node
+  linkType: hard
+
+"n8ao@npm:^1.9.4":
+  version: 1.10.2
+  resolution: "n8ao@npm:1.10.2"
+  peerDependencies:
+    postprocessing: ">=6.30.0"
+    three: ">=0.137"
+  checksum: 10c0/0a13240f3b951492e72b269fe4870ad030ab82cfaeb36664e0d5ec00effddad93c0d1da6777d1a11e909c3aecc3d0d4de056f56225e9cd41621d37533fe676f1
   languageName: node
   linkType: hard
 
@@ -3447,6 +3468,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postprocessing@npm:^6.36.6":
+  version: 6.39.2
+  resolution: "postprocessing@npm:6.39.2"
+  peerDependencies:
+    three: ">= 0.168.0 < 0.186.0"
+  checksum: 10c0/c10415d11463ceda1966506e0d63071869941930324cb4c29a5cc95aeb48bddb5aad95a8da3cd3c6ed61222f398559f983acede48e6f0e229d38f52cea4d4f74
+  languageName: node
+  linkType: hard
+
 "potpack@npm:^1.0.1":
   version: 1.0.2
   resolution: "potpack@npm:1.0.2"
@@ -3492,14 +3522,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^19.2.0":
-  version: 19.2.6
-  resolution: "react-dom@npm:19.2.6"
+"react-dom@npm:^19.2.6":
+  version: 19.2.7
+  resolution: "react-dom@npm:19.2.7"
   dependencies:
     scheduler: "npm:^0.27.0"
   peerDependencies:
-    react: ^19.2.6
-  checksum: 10c0/dbf2aef67857c03a612bc9316a4562e5066f43fa04bf28f7f0734963fc1350da2c9f8eb973930655453281079f30cc8222bab383dbec4b5097084e2c081e3334
+    react: ^19.2.7
+  checksum: 10c0/970ff600f6e80d47d39e2f226f12f226173b3cba3382efc97c5f0cd663de9af38c7a4c11c213fb936094faeac83060d660247accaa96b752180d5b951b9cfecb
   languageName: node
   linkType: hard
 
@@ -3523,10 +3553,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.2.0":
-  version: 19.2.6
-  resolution: "react@npm:19.2.6"
-  checksum: 10c0/66afde33b9a9ee87b1e1cae39d8e7e040d1262e719524fd70660c4d4ce79929c532ac19fc3df5a911edaf02768fdf2c49de4ede1ba99bc6aad72796e0e26e798
+"react@npm:^19.2.6":
+  version: 19.2.7
+  resolution: "react@npm:19.2.7"
+  checksum: 10c0/0bd0e2f1bbd4ba97561c6597bf8a5fec05e6476fe61e165c1065598d16668efc6715205599c94d3ddd49d36cb0f21cbf1b9bcc18ee840b805ce222c3e8d558ac
   languageName: node
   linkType: hard
 
@@ -3989,10 +4019,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:^0.183.2":
-  version: 0.183.2
-  resolution: "three@npm:0.183.2"
-  checksum: 10c0/dd42957a99f5ea3e6f907e17eaa3c99a931180bac24be68b8e0ff13674bc44314d3255839ec1802ad1251d9e508f542b8d26b2cc86a6b44ac9b06de34b37fdc7
+"three@npm:^0.184.0":
+  version: 0.184.0
+  resolution: "three@npm:0.184.0"
+  checksum: 10c0/6af4a36dd97e7082c8daca57af162a36df0ca18337a805913bdb6787dd5b2626face8b51d361a0cb2f767e18fdb1ad7e73ab945ae32647741af9278311f5369d
   languageName: node
   linkType: hard
 

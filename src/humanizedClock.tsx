@@ -178,7 +178,7 @@ export const Letters = [
     "onzerheures",
     "moinsoledix",
     "etrquartpmd",
-    "vingt cinqu",
+    "vingt-cinqu",
     "etsdemiepam",
 ]
 
@@ -235,21 +235,16 @@ export function fromHumanizedWordToLetters(word: string) {
     }
 }
 
-
 export function humanizedClockInFrench(date: Date) : string {
   const hour = date.getHours();
   const minutes = date.getMinutes();
 
   if(minutes > 30) {
-    const hourString = (hour + 1) > 1 ? "heures" : "heure";
-    return `${fromHourToFrench(hour + 1)} ${hourString} ${fronMinuteToFrench(minutes)}`;
+    return `${fromHourToFrench(hour + 1)} ${hourString(hour + 1)} ${fronMinuteToFrench(minutes)}`;
   }
 
-  const hourString = (hour + 1) > 1 ? "heures" : "heure";
-  return `${fromHourToFrench(hour)} ${hourString} ${fronMinuteToFrench(minutes)}`;
+  return `${fromHourToFrench(hour)} ${hourString(hour)} ${fronMinuteToFrench(minutes)}`;
 }
-
-
 
 export function humanizedClock(date: Date) : [string, string] {
   const hour = date.getHours();
@@ -262,4 +257,10 @@ export function humanizedClock(date: Date) : [string, string] {
   return [fromHourToFrench(hour), fronMinuteToFrench(minutes)];
 }
 
+function hourString(hour : number): string {
+  if(hour === 12 || hour == 0) {
+    return "";
+  }
 
+  return (hour + 1) > 1 ? "heures" : "heure";
+}
