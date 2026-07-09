@@ -38,7 +38,15 @@ const THEMES = [
   highlight: "",
   color: "#111",
   texturePath: "fleshy-granite1-unity/fleshy_granite1"
+ },
+ {
+  highlight: "",
+  color: "#111",
+  texturePath: "gray-granite-flecks-bl/gray-granite-flecks"
  }
+
+
+ 
 ]
 
 function ClockScene({date, themeIndex} : ClockSceneProps) {
