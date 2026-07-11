@@ -1,5 +1,5 @@
 import { useRef, useEffect, useMemo } from "react";
-import { CameraControls,  GizmoHelper, GizmoViewport, Center, Grid, Bounds, Text3D, Stars } from '@react-three/drei';
+import { OrbitControls,  GizmoHelper, GizmoViewport, Center, Grid, Bounds, Text3D, Stars } from '@react-three/drei';
 import BuildingText from "./BuildingText";
 import { Box } from '@react-three/drei';
 import { generateWords } from "../numberToWord";
@@ -17,14 +17,16 @@ const SIZE = 2;
 const SPACE_BETWEEN_BUILDING = 10;
 
 function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProps) {
-    const cameraControlRef = useRef<CameraControls>(null);
+    const cameraControlRef = useRef<OrbitControls>(null);
 
     const font = new FontLoader().parse(Myfont);
     const textMaterial = useMemo(() => new MeshStandardMaterial({color: "orange", emissive: "red", toneMapped: false, emissiveIntensity: 2  }), []);
 
     useEffect(() => {
         if(cameraControlRef.current) {
-            cameraControlRef.current.setLookAt(0, 40, 50,0, 0, 0, true);
+            console.log(cameraControlRef.current)
+            //cameraControlRef.current.position.set( 0, 40, 50 );
+            
         }
     }, []);
 
@@ -38,7 +40,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
             <Bounds>
                 <Center disableY>
-                    <Box args={[20, 1, 20]} position={[0,-1,0]} material-color="purple" />
+                    <Box args={[25, 2, 25]} position={[0,-1.1,0]} material-color="#555" />
                     <BuildingText
                         size={SIZE}
                         position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0,-SPACE_BETWEEN_BUILDING+ 2*SIZE]}
@@ -68,7 +70,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                         letterSpacing={0}
                         size={2}
                         font={Myfont}
-                        position={[-4,1, 11 ]}
+                        position={[-2,0, 12 ]}
                         rotation={[0,0,0]}
                         material={textMaterial}
                     >
@@ -79,7 +81,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                         letterSpacing={0}
                         size={2}
                         font={Myfont}
-                        position={[10, 1, 11 ]}
+                        position={[12, 0, 11 ]}
                         rotation={[0,Math.PI/2,0]}
                         material={textMaterial}
                     >
@@ -96,7 +98,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
             <GizmoViewport labelColor="white" axisHeadScale={1} />
             </GizmoHelper>
-            <CameraControls ref={cameraControlRef} makeDefault />
+            <OrbitControls ref={cameraControlRef} makeDefault autoRotate={true} />
         </>
     )
 }
