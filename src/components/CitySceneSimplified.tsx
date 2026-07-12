@@ -20,7 +20,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
     const cameraControlRef = useRef<OrbitControls>(null);
 
     const font = new FontLoader().parse(Myfont);
-    const textMaterial = useMemo(() => new MeshStandardMaterial({color: "orange", emissive: "red", toneMapped: false, emissiveIntensity: 2  }), []);
+    const textMaterial = useMemo(() => new MeshStandardMaterial({color: 0xFA9A6E, emissive: "red", toneMapped: false, emissiveIntensity: 2  }), []);
 
     useEffect(() => {
         if(cameraControlRef.current) {
@@ -40,7 +40,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
             <Bounds>
                 <Center disableY>
-                    <Box args={[25, 2, 25]} position={[0,-1.1,0]} material-color="#555" />
+                    <Box args={[25, 2, 25]} position={[0,-1.1,0]} material-color="#2C2819" />
                     <BuildingText
                         size={SIZE}
                         position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0,-SPACE_BETWEEN_BUILDING+ 2*SIZE]}

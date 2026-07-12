@@ -41,7 +41,7 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
     const [numberSize, setNumberSize] = useState<[number, number, number]>([0,0,0]);
 
     //create geometry and material to reuse it
-    const color = highlight ? 0xFDDE55 : "black";
+    const color = highlight ? 0xfae06e : "black";
     const textMaterial = useMemo(() => new MeshStandardMaterial({color: color, emissive: color, toneMapped: false, emissiveIntensity: highlight ? 2 : 0 }), [highlight, color]);
 
     const font = new FontLoader().parse(Myfont);
