@@ -1,6 +1,6 @@
 import { useRef , useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Stats, Stage, CameraControls } from '@react-three/drei';
+import { Stats, Stage } from '@react-three/drei';
 import ClockScene from "./ClockScene";
 // import CityScene from "./CityScene";
 import { EffectComposer, Bloom, /*Grid,*/ ToneMapping, TiltShift } from '@react-three/postprocessing';
@@ -13,7 +13,7 @@ interface ThreejsRenderingProps {
 
 function ThreejsRendering({date} : ThreejsRenderingProps) {
   const containerCanvasRef = useRef<HTMLDivElement>(null);
-  const [clockScene, _setClockScene] = useState<boolean>(true);
+  const [clockScene, _setClockScene] = useState<boolean>(false);
   const [themeIndex, setThemeIndex] = useState<number>(5);
 
   return (
@@ -59,16 +59,6 @@ function ThreejsRendering({date} : ThreejsRenderingProps) {
             <TiltShift offset={0.30} focusArea={0.50} feather={0.5}  blendFunction={BlendFunction.NORMAL} />
             <ToneMapping  mode={ToneMappingMode.UNCHARTED2} />
           </EffectComposer>
-          <CameraControls
-            makeDefault
-            smoothTime={1.0}
-            minPolarAngle={0.75}
-            maxPolarAngle={Math.PI / 2.5}
-            minAzimuthAngle={-Math.PI}
-            maxAzimuthAngle={Math.PI}
-            minDistance={200}
-            maxDistance={500}
-          />
         </Canvas>
       </div>
     </div>
