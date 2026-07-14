@@ -24,9 +24,9 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
     useEffect(() => {
         if(cameraControlRef.current) {
-            console.log(cameraControlRef.current)
-            //cameraControlRef.current.position.set( 0, 40, 50 );
-            
+            cameraControlRef.current.object.position.set(0, 100, 200);
+            cameraControlRef.current.target.set(0, 0, 0);
+            cameraControlRef.current.update();
         }
     }, []);
 
@@ -98,7 +98,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
             <GizmoViewport labelColor="white" axisHeadScale={1} />
             </GizmoHelper>
-            <OrbitControls ref={cameraControlRef} makeDefault autoRotate={true} />
+            <OrbitControls ref={cameraControlRef} makeDefault autoRotate={true} autoRotateSpeed={0.5} />
         </>
     )
 }
