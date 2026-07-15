@@ -42,7 +42,7 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
 
     //create geometry and material to reuse it
     const color = highlight ? 0xfae06e : "black";
-    const textMaterial = useMemo(() => new MeshStandardMaterial({color: color, emissive: color, toneMapped: false, emissiveIntensity: highlight ? 2 : 0 }), [highlight, color]);
+    const textMaterial = useMemo(() => new MeshStandardMaterial({color: color, emissive: 0x888888, roughness: 1, metalness: 0.421, toneMapped: false, emissiveIntensity: highlight ? 2 : 0 }), [highlight, color]);
 
     const font = new FontLoader().parse(Myfont);
     const geometry = useMemo(() => new TextGeometry(verticalizeText(text), {font, size, letterSpacing, depth:0.2}), [text]);
