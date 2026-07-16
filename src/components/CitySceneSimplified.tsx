@@ -13,8 +13,8 @@ interface CitySceneSimplifiedProps {
     seconds: number;
 }
 
-const SIZE = 2;
-const SPACE_BETWEEN_BUILDING = 10;
+const SIZE = 3;
+const SPACE_BETWEEN_BUILDING = 12;
 
 function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProps) {
     const cameraControlRef = useRef<OrbitControls>(null);
@@ -43,7 +43,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
                     <Box args={[25, 2, 25]} position={[0,-1.1,0]} material-color="#2C2819" />
                     <BuildingText
                         size={SIZE}
-                        position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0,-SPACE_BETWEEN_BUILDING+ 2*SIZE]}
+                        position={[-SPACE_BETWEEN_BUILDING + 2 * SIZE, 0,-SPACE_BETWEEN_BUILDING + 2 * SIZE]}
                         textNumber={seconds.toString()}
                         highlight={true}
                         text={generateWords(seconds)}
@@ -51,7 +51,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
                     <BuildingText
                         size={SIZE}
-                        position={[SPACE_BETWEEN_BUILDING - 2*SIZE,0, -SPACE_BETWEEN_BUILDING+ 2*SIZE]}
+                        position={[SPACE_BETWEEN_BUILDING - 2 * SIZE, 0, -SPACE_BETWEEN_BUILDING + 2 * SIZE]}
                         textNumber={minutes.toString()}
                         highlight={true}
                         text={generateWords(minutes)}
@@ -59,7 +59,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
 
                     <BuildingText
                         size={SIZE}
-                        position={[-SPACE_BETWEEN_BUILDING + 2*SIZE,0, +SPACE_BETWEEN_BUILDING- 2*SIZE]}
+                        position={[-SPACE_BETWEEN_BUILDING + 2 * SIZE, 0, + SPACE_BETWEEN_BUILDING - 2 * SIZE]}
                         textNumber={hours.toString()}
                         highlight={true}
                         text={generateWords(hours)}
