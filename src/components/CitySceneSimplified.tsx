@@ -98,7 +98,7 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
             <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
             <GizmoViewport labelColor="white" axisHeadScale={1} />
             </GizmoHelper>
-            <OrbitControls ref={cameraControlRef} makeDefault autoRotate={true} autoRotateSpeed={0.5} />
+            <OrbitControls ref={cameraControlRef} makeDefault autoRotate={true} autoRotateSpeed={0.1} />
         </>
     )
 }
