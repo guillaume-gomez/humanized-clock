@@ -26,7 +26,7 @@ const mapWorldHours = [
 
 interface CityTextProps {
     minutes: number;
-    hour: number;
+    hours: number;
     seconds: number;
 }
 
@@ -62,10 +62,10 @@ return (
 });
 
 interface HourBlockProps {
-    hour: number;
+    hours: number;
 }
 
-const HourBlockMemo = memo(function HourBlock({hour} : HourBlockProps) {
+const HourBlockMemo = memo(function HourBlock({hours} : HourBlockProps) {
     return (
         <group position={[-90,0,-44]}>
             {
@@ -77,7 +77,7 @@ const HourBlockMemo = memo(function HourBlock({hour} : HourBlockProps) {
                             size={SIZE}
                             position={[x * SPACE_BETWEEN_BUILDING,0,z * SPACE_BETWEEN_BUILDING]}
                             textNumber={item.toString()}
-                            highlight={item === hour}
+                            highlight={item === hours}
                             text={generateWords(item)}
                         />
                     })
@@ -96,7 +96,7 @@ function CityText({ hours, minutes, seconds} : CityTextProps) {
             <Box args={[widthBoxHour + 2*widthBoxMinutesAndSeconds,2, heightBox]} position={[0,-1,0]} material-color="grey" />
             <SecondsMinutesBlockMemo duration={seconds} x={35} />
             <SecondsMinutesBlockMemo duration={minutes} x={-45} />
-            <HourBlockMemo hour={hours} />
+            <HourBlockMemo hours={hours} />
         </>
     );
 }

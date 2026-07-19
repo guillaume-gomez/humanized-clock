@@ -20,7 +20,16 @@ function CitySceneSimplified({hours, minutes, seconds} : CitySceneSimplifiedProp
     const cameraControlRef = useRef<OrbitControls>(null);
 
     const font = new FontLoader().parse(Myfont);
-    const textMaterial = useMemo(() => new MeshStandardMaterial({color: 0xFA9A6E, emissive: "red", toneMapped: false, emissiveIntensity: 2  }), []);
+    const textMaterial = useMemo(() => new MeshStandardMaterial({
+        color: 0xFA9A6E,
+        emissive: "orange",
+        toneMapped: false,
+        emissiveIntensity: 1,
+        metalness: 1,
+        roughness: 0,
+        clearcoat: 0.78,
+        clearcoatRoughness: 0.22
+    }), []);
 
     useEffect(() => {
         if(cameraControlRef.current) {
