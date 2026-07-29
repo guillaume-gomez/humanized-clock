@@ -1,10 +1,13 @@
-import { useMemo, useRef, useEffect, useState } from "react";
-import { Box3, TextureLoader } from "three";
+import { useMemo, useRef, useEffect, useState, Ref } from "react";
+import { Box3, TextureLoader, Mesh } from "three";
 import Letter3D from "./Letter3D";
 import flatten from "lodash/flatten";
 import find from "lodash/find";
 import { useLoader } from '@react-three/fiber';
 import { Letters, fromHumanizedWordToLetters } from "../humanizedClock";
+
+
+const { BASE_URL } = import.meta.env;
 
 interface LettersGridProps {
     dateHumanized: string;
@@ -14,6 +17,7 @@ interface LettersGridProps {
         background?: string;
         texturePath: string;
     }
+    meshRef: Ref<Mesh>;
 }
 
 function fromHumanizedToLetters(words: string) {
@@ -28,13 +32,13 @@ const defaultTheme = {
   texturePath: "white-marble-unity/white-marble"
 }
 
-function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) {
+function LettersGrid({dateHumanized, meshRef, theme = defaultTheme } : LettersGridProps) {
     const { highlight, color, background, texturePath } = theme;
     const [displacementMap, normalMap, aoMap, map] = useLoader(TextureLoader, [
-        `textures/${texturePath}_height.png`,
-        `textures/${texturePath}_normal-ogl.png`,
-        `textures/${texturePath}_ao.png`,
-        `textures/${texturePath}_albedo.png`,
+        `${BASE_URL}textures/${texturePath}_height.png`,
+        `${BASE_URL}textures/${texturePath}_normal-ogl.png`,
+        `${BASE_URL}textures/${texturePath}_ao.png`,
+        `${BASE_URL}textures/${texturePath}_albedo.png`,
     ]);
 
     const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
@@ -78,8 +82,11 @@ function LettersGrid({dateHumanized, theme = defaultTheme } : LettersGridProps) 
     }
 
     return(
-        <group position={[0, 3, 0]}>
-            <mesh position={[geometrySize[0]/2, -geometrySize[1]/2 +0.5,-0.25]} >
+        <group position={[0, 3, 0]} scale={1}>
+            <mesh
+                ref={meshRef}
+                position={[geometrySize[0]/2, -geometrySize[1]/2 +0.5,-0.25]}
+            >
                 <boxGeometry args={[geometrySize[0] + 2, geometrySize[1] + 2, geometrySize[2]]}/>
                 <meshStandardMaterial
                     map={map}
