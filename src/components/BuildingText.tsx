@@ -1,10 +1,10 @@
-import { MeshStandardMaterial, Box3 } from "three";
+import { MeshPhysicalMaterial, Box3 } from "three";
 import { Text3D, Box } from '@react-three/drei';
 import { useRef, useEffect, useState, useMemo } from "react";
 import { extend } from '@react-three/fiber'
 import Myfont from "../5Identification-Mono.json"
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
+import { FontLoader, TextGeometry } from 'three-stdlib';
+import type { FontData } from '@react-three/drei/core/useFont';
 extend({ TextGeometry })
 
 
@@ -42,10 +42,20 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
 
     //create geometry and material to reuse it
     const color = highlight ? 0xfae06e : "black";
-    const textMaterial = useMemo(() => new MeshStandardMaterial({color: color, emissive: 0x888888, roughness: 1, metalness: 0.421, toneMapped: false, emissiveIntensity: highlight ? 2 : 0 }), [highlight, color]);
+    const textMaterial = useMemo(() => new MeshPhysicalMaterial({
+        color: color,
+        emissive: 0x888888,
+        toneMapped: false,
+        emissiveIntensity: highlight ? 2 : 0,
+        metalness: 1,
+        roughness: 0.5,
+        clearcoat: 0.78,
+        clearcoatRoughness: 0.22
+        }),
+    [highlight, color]);
 
-    const font = new FontLoader().parse(Myfont);
-    const geometry = useMemo(() => new TextGeometry(verticalizeText(text), {font, size, letterSpacing, depth:0.2}), [text]);
+    const font = new FontLoader().parse(Myfont as any);
+    const geometry = useMemo(() => new TextGeometry(verticalizeText(text), {font, size, letterSpacing, height:0.2}), [text]);
 
     useEffect(() => {
         if(refText.current) {
@@ -116,7 +126,7 @@ function BuildingText({text, textNumber, position, size = 1, highlight = false} 
                 ref={refNumber}
                 letterSpacing={0}
                 size={size * 0.45}
-                font={Myfont}
+                font={Myfont as unknown as FontData}
                 position={[0,-numberSize[0]/2, numberSize[2]/2]}
                 rotation={[0,-Math.PI/2,Math.PI/2]}
                 material={textMaterial}
