@@ -61,14 +61,12 @@ function LettersGrid({dateHumanized, meshRef, theme = defaultTheme } : LettersGr
         return line.split('').map((letter, x) => {
             const isHightLight = find(letterPositions, (item) => item.x === x && item.y === y )
             const colorLetter = isHightLight ? highlight : color;
-            const opacity = isHightLight ? 1.0 : 0.75;
             return (
                 <Letter3D 
                     key={`${x}_${y}`}
                     letter={letter}
                     position={[x,-y, -0.3]}
                     color={colorLetter}
-                    opacity={opacity}
                 />
             );
         });

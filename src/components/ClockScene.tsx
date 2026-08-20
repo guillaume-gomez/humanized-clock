@@ -13,8 +13,8 @@ interface ClockSceneProps{
 
 const THEMES = [
  {
-  highlight: "#F3A712",
-  color: "#111",
+  highlight: "#FA74FD",
+  color: "#FA74FD",
   texturePath: "white-marble-unity/white-marble"
  },
  {
@@ -88,9 +88,10 @@ function ClockScene({date, themeIndex} : ClockSceneProps) {
       dateHumanized={"il est " + humanizedClockInFrench(date)}
       theme={THEMES[themeIndex]}
     />
+    {/* Debug only cause destroy the effectComposer 
     <GizmoHelper alignment="bottom-right" margin={[50, 50]}>
       <GizmoViewport labelColor="white" axisHeadScale={1} />
-    </GizmoHelper>
+    </GizmoHelper>*/}
     <CameraControls
       ref={cameraControlRef}
       minPolarAngle={Math.PI/2.1}

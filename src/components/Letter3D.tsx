@@ -4,11 +4,10 @@ interface Letter3DProps {
     letter: string;
     position: [number, number, number];
     color: string;
-    opacity?: number
 }
 
-function Letter3D({letter, position, color = "white", opacity = 1.0} : Letter3DProps) {
-
+function Letter3D({letter, position, color = "white"} : Letter3DProps) {
+    
     return(
         <Text3D 
             letterSpacing={-0.06}
@@ -21,7 +20,12 @@ function Letter3D({letter, position, color = "white", opacity = 1.0} : Letter3DP
             bevelEnabled={true}
         >
             {letter}
-            <meshStandardMaterial color={color} opacity={opacity} transparent={true} />
+            <meshStandardMaterial 
+                color={color}
+                emissive={color}
+                emissiveIntensity={5}
+                toneMapped={false} 
+            />
         </Text3D>
     );
 }
