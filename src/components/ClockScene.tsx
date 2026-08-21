@@ -46,10 +46,7 @@ const THEMES = [
   color: "#111",
   texturePath: "gray-granite-flecks-bl/gray-granite-flecks"
  }
-
-
- 
-]
+];
 
 function ClockScene({date, themeIndex} : ClockSceneProps) {
   const cameraControlRef = useRef<CameraControls>(null);

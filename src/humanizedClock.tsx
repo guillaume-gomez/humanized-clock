@@ -275,8 +275,6 @@ export function humanizedClockPositionsInFrench(date: Date): array {
     ...minutesWords.map(word => fromHumanizedMinuteToLetters(word))
   ];
 
-  console.log(positions);
-
   return flatten(positions);
 }
 

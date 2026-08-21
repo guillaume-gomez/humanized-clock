@@ -36,7 +36,7 @@ function LettersGrid({date, meshRef, theme = defaultTheme } : LettersGridProps) 
         `${BASE_URL}textures/${texturePath}_albedo.png`,
     ]);
 
-    const letterPositions = useMemo(() => humanizedClockPositionsInFrench(date), [date]);
+    const letterPositions = useMemo(() => humanizedClockPositionsInFrench(date), [date.getMinutes()]);
     const groupRef = useRef(null);
     const [geometrySize, setGeometrySize] = useState<[number, number, number]>([0,0,0]);
 
