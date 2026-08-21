@@ -4,13 +4,13 @@ import Letter3D from "./Letter3D";
 import flatten from "lodash/flatten";
 import find from "lodash/find";
 import { useLoader } from '@react-three/fiber';
-import { Letters, fromHumanizedWordToLetters } from "../humanizedClock";
+import { Letters, humanizedClockPositionsInFrench } from "../humanizedClock";
 
 
 const { BASE_URL } = import.meta.env;
 
 interface LettersGridProps {
-    dateHumanized: string;
+    date: Date;
     theme?: {
         highlight: string;
         color: string;
@@ -20,11 +20,6 @@ interface LettersGridProps {
     meshRef: Ref<Mesh>;
 }
 
-function fromHumanizedToLetters(words: string) {
-    const positions = words.split(' ').map(word => fromHumanizedWordToLetters(word));
-    return flatten(positions);
-}
-
 const defaultTheme = {
   highlight: "#E9B872", 
   color: "#6494AA",
@@ -32,7 +27,7 @@ const defaultTheme = {
   texturePath: "white-marble-unity/white-marble"
 }
 
-function LettersGrid({dateHumanized, meshRef, theme = defaultTheme } : LettersGridProps) {
+function LettersGrid({date, meshRef, theme = defaultTheme } : LettersGridProps) {
     const { highlight, color, background, texturePath } = theme;
     const [displacementMap, normalMap, aoMap, map] = useLoader(TextureLoader, [
         `${BASE_URL}textures/${texturePath}_height.png`,
@@ -41,7 +36,7 @@ function LettersGrid({dateHumanized, meshRef, theme = defaultTheme } : LettersGr
         `${BASE_URL}textures/${texturePath}_albedo.png`,
     ]);
 
-    const letterPositions = useMemo(() => fromHumanizedToLetters(dateHumanized), [dateHumanized]);
+    const letterPositions = useMemo(() => humanizedClockPositionsInFrench(date), [date]);
     const groupRef = useRef(null);
     const [geometrySize, setGeometrySize] = useState<[number, number, number]>([0,0,0]);
 

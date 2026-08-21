@@ -1,3 +1,4 @@
+import flatten from "lodash/flatten";
 
 function fromHourToFrench(hour: number) : string {
   switch(hour) {
@@ -42,7 +43,7 @@ function fromHourToFrench(hour: number) : string {
   }
 }
 
-function fronMinuteToFrench(minutes: number) : string {
+function fromMinuteToFrench(minutes: number) : string {
   switch(minutes) {
     default:
     case 0:
@@ -182,7 +183,29 @@ export const Letters = [
     "etsdemiepam",
 ]
 
-export function fromHumanizedWordToLetters(word: string) {
+
+export function fromHumanizedMinuteToLetters(word: string) {
+   switch(word) {
+        case "moins":
+            return [{x:0, y:6}, {x:1, y:6}, {x:2, y:6}, {x:3, y:6}, {x:4, y:6}];
+        case "le":
+            return [{x:6, y:6}, {x:7, y:6}];
+        case "dix":
+            return [{x:8, y:6}, {x:9, y:6}, {x:10, y:6}];
+        case "et":
+            return [{x:0, y:7}, {x:1, y:7}];
+        case "quart":
+            return [{x:3, y:7}, {x:4, y:7}, {x:5, y:7}, {x:6, y:7}, {x:7, y:7}];
+        case "vingt":
+            return [{x:0, y:8}, {x:1, y:8}, {x:2, y:8}, {x:3, y:8}, {x:4, y:8}];
+        case "demie":
+            return [{x:3, y:9}, {x:4, y:9}, {x:5, y:9}, {x:6, y:9}, {x:7, y:9}];
+        default:
+            return []
+    }
+}
+
+export function fromHumanizedHourToLetters(word: string) {
     switch(word) {
         case "il":
             return [{x:0, y:0}, {x:1, y:0}];
@@ -216,48 +239,49 @@ export function fromHumanizedWordToLetters(word: string) {
             return [{x:5, y:5}, {x:6, y:5}, {x:7, y:5}, {x:8, y:5}, {x:9, y:5}];
         case "heures":
             return [{x:5, y:5}, {x:6, y:5}, {x:7, y:5}, {x:8, y:5}, {x:9, y:5}, {x:10, y:5}];
-        case "moins":
-            return [{x:0, y:6}, {x:1, y:6}, {x:2, y:6}, {x:3, y:6}, {x:4, y:6}];
-        case "le":
-            return [{x:6, y:6}, {x:7, y:6}];
-        case "dix":
-            return [{x:8, y:6}, {x:9, y:6}, {x:10, y:6}];
-        case "et":
-            return [{x:0, y:7}, {x:1, y:7}];
-        case "quart":
-            return [{x:3, y:7}, {x:4, y:7}, {x:5, y:7}, {x:6, y:7}, {x:7, y:7}];
-        case "vingt":
-            return [{x:0, y:8}, {x:1, y:8}, {x:2, y:8}, {x:3, y:8}, {x:4, y:8}];
-        case "demie":
-            return [{x:3, y:9}, {x:4, y:9}, {x:5, y:9}, {x:6, y:9}, {x:7, y:9}];
         default:
             return []
     }
 }
 
-export function humanizedClockInFrench(date: Date) : string {
+
+function computeHumanizedDateInFrench(date: Date): array {
   const hour = date.getHours();
   const minutes = date.getMinutes();
 
+  
+  const minutesString = fromMinuteToFrench(minutes);
+  
   if(minutes > 30) {
-    return `${fromHourToFrench(hour + 1)} ${hourString(hour + 1)} ${fronMinuteToFrench(minutes)}`;
+    const hoursString = `il est ${fromHourToFrench(hour + 1)} ${hourStringInFrench(hour + 1)}`;
+  
+    return { hours: hoursString, minutes: minutesString };
   }
 
-  return `${fromHourToFrench(hour)} ${hourString(hour)} ${fronMinuteToFrench(minutes)}`;
+  const hoursString = `il est ${fromHourToFrench(hour)} ${hourStringInFrench(hour)}`;
+  
+
+  return { hours:  hoursString, minutes: minutesString };
 }
 
-export function humanizedClock(date: Date) : [string, string] {
-  const hour = date.getHours();
-  const minutes = date.getMinutes();
+export function humanizedClockPositionsInFrench(date: Date): array {
+  const { hours, minutes } = computeHumanizedDateInFrench(date);
 
-  if(minutes > 30) {
-    return [fromHourToFrench(hour + 1), fronMinuteToFrench(minutes)];
-  }
+  const hoursWords = hours.split(" ");
+  const minutesWords = minutes.split(" ");
 
-  return [fromHourToFrench(hour), fronMinuteToFrench(minutes)];
+  const positions = [
+    ...hoursWords.map(word => fromHumanizedHourToLetters(word)),
+    ...minutesWords.map(word => fromHumanizedMinuteToLetters(word))
+  ];
+
+  console.log(positions);
+
+  return flatten(positions);
 }
 
-function hourString(hour : number): string {
+
+function hourStringInFrench(hour : number): string {
   if(hour === 12 || hour == 0) {
     return "";
   }

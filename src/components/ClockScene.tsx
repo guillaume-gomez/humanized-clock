@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import { Mesh } from "three";
 import { CameraControls,  GizmoHelper, GizmoViewport, Gltf } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";
-import { humanizedClockInFrench } from "../humanizedClock";
 
 const { BASE_URL } = import.meta.env;
 
@@ -85,7 +84,7 @@ function ClockScene({date, themeIndex} : ClockSceneProps) {
     <pointLight position={[-3.9, -30.3, 29]} color="#88aadd" intensity={1} distance={3} decay={2} />
     <LettersGrid
       meshRef={meshRef}
-      dateHumanized={"il est " + humanizedClockInFrench(date)}
+      date={date}
       theme={THEMES[themeIndex]}
     />
     {/* Debug only cause destroy the effectComposer 
