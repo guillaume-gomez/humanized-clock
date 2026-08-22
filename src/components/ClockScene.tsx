@@ -13,7 +13,7 @@ interface ClockSceneProps{
 const THEMES = [
  {
   highlight: "#FA74FD",
-  color: "#FA74FD",
+  color: "111",
   texturePath: "white-marble-unity/white-marble"
  },
  {
@@ -28,7 +28,7 @@ const THEMES = [
  },
  {
   highlight: "#F3A712",
-  color: "#AAA",
+  color: "#111",
   texturePath: "gray-polished-granite-unity/gray-polished-granite"
  },
  {
@@ -73,7 +73,7 @@ function ClockScene({date, themeIndex} : ClockSceneProps) {
 
   return (
   <>
-    <ambientLight intensity={0.8} />
+    <ambientLight intensity={3} />
     <directionalLight position={[10, 10, 10]} />
     <color attach="background" args={['#c0d6e9']} />
     <Gltf src={`${BASE_URL}living_room_interior_free/scene2.gltf`} scale={2.5} position={[-4, -30, 29.5]}  rotation={[ 0, -Math.PI/2, 0]}/>

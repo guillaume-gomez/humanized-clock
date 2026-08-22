@@ -21,7 +21,7 @@ function Letter3D({letter, position, color = "white"} : Letter3DProps) {
         >
             {letter}
             <meshStandardMaterial 
-                color={color}
+                color={"white"}
                 emissive={color}
                 emissiveIntensity={5}
                 toneMapped={false} 
