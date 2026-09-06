@@ -48,7 +48,7 @@ function ThreejsRendering({date} : ThreejsRenderingProps) {
             }
           </Suspense>
           <EffectComposer enableNormalPass={false}>
-            <Bloom mipmapBlur luminanceThreshold={2} intensity={5} levels={9}  />
+            <Bloom mipmapBlur luminanceThreshold={2} intensity={5} levels={9} />
             {/*<ChromaticAberration
               blendFunction={BlendFunction.NORMAL} // blend mode
               offset={[0.001, 0.001]} // color offset
