@@ -1,5 +1,15 @@
 import flatten from "lodash/flatten";
 
+interface DateData {
+  hours: string;
+  minutes: string;
+}
+
+interface LetterPosition {
+  x: number;
+  y: number;
+}
+
 function fromHourToFrench(hour: number) : string {
   switch(hour) {
     default:
@@ -184,7 +194,7 @@ export const Letters = [
 ]
 
 
-export function fromHumanizedMinuteToLetters(word: string) {
+export function fromHumanizedMinuteToLetters(word: string): LetterPosition[] {
    switch(word) {
         case "moins":
             return [{x:0, y:6}, {x:1, y:6}, {x:2, y:6}, {x:3, y:6}, {x:4, y:6}];
@@ -205,7 +215,7 @@ export function fromHumanizedMinuteToLetters(word: string) {
     }
 }
 
-export function fromHumanizedHourToLetters(word: string) {
+export function fromHumanizedHourToLetters(word: string): LetterPosition[] {
     switch(word) {
         case "il":
             return [{x:0, y:0}, {x:1, y:0}];
@@ -245,7 +255,7 @@ export function fromHumanizedHourToLetters(word: string) {
 }
 
 
-function computeHumanizedDateInFrench(date: Date): array {
+function computeHumanizedDateInFrench(date: Date): DateData {
   const hour = date.getHours();
   const minutes = date.getMinutes();
 
@@ -264,7 +274,7 @@ function computeHumanizedDateInFrench(date: Date): array {
   return { hours:  hoursString, minutes: minutesString };
 }
 
-export function humanizedClockPositionsInFrench(date: Date): array {
+export function humanizedClockPositionsInFrench(date: Date): LetterPosition[] {
   const { hours, minutes } = computeHumanizedDateInFrench(date);
 
   const hoursWords = hours.split(" ");

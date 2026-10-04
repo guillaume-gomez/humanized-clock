@@ -3,8 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import { Stats } from '@react-three/drei';
 import ClockScene from "./ClockScene";
 // import CityScene from "./CityScene";
-import { EffectComposer, ToneMapping, TiltShift, Bloom } from '@react-three/postprocessing';
-import { BlendFunction, ToneMappingMode } from 'postprocessing';
+import { EffectComposer, ToneMapping, Bloom } from '@react-three/postprocessing';
+import { ToneMappingMode } from 'postprocessing';
 import CitySceneSimplified from "./CitySceneSimplified";
 
 interface ThreejsRenderingProps {
@@ -48,13 +48,7 @@ function ThreejsRendering({date} : ThreejsRenderingProps) {
             }
           </Suspense>
           <EffectComposer enableNormalPass={false}>
-            <Bloom mipmapBlur luminanceThreshold={2} intensity={5} levels={9} />
-            {/*<ChromaticAberration
-              blendFunction={BlendFunction.NORMAL} // blend mode
-              offset={[0.001, 0.001]} // color offset
-            />*/}
-            {/*<Grid scale={2} lineWidth={1}  blendFunction={BlendFunction.OVERLAY}/>*/}
-            {/*<TiltShift offset={0.30} focusArea={0.50} feather={0.5}  blendFunction={BlendFunction.NORMAL} />*/}
+            <Bloom mipmapBlur luminanceThreshold={2} intensity={4} levels={9} />
             <ToneMapping  mode={ToneMappingMode.UNCHARTED2} />
           </EffectComposer>
         </Canvas>

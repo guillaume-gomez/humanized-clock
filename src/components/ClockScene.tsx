@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Mesh } from "three";
-import { CameraControls,  GizmoHelper, GizmoViewport, Gltf } from '@react-three/drei';
+import { CameraControls, Gltf } from '@react-three/drei';
 import LettersGrid from "./LettersGrid";
 
 const { BASE_URL } = import.meta.env;
@@ -11,11 +11,6 @@ interface ClockSceneProps{
 }
 
 const THEMES = [
- {
-  highlight: "#FA74FD",
-  color: "111",
-  texturePath: "white-marble-unity/white-marble"
- },
  {
   highlight: "#F3A712",
   color: "#111",
@@ -45,7 +40,12 @@ const THEMES = [
   highlight: "",
   color: "#111",
   texturePath: "gray-granite-flecks-bl/gray-granite-flecks"
- }
+ },
+ {
+  highlight: "#5E5BE1",
+  color: "111",
+  texturePath: "white-marble-unity/white-marble"
+ },
 ];
 
 function ClockScene({date, themeIndex} : ClockSceneProps) {
