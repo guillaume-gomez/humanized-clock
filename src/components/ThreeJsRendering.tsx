@@ -11,6 +11,16 @@ interface ThreejsRenderingProps {
   date: Date;
 }
 
+const MaterialNames = [
+  "almond granite",
+  "armani marble",
+  "grey polished granite",
+  "stringy granite",
+  "fleshy granite",
+  "grey granite",
+  "white marble"
+];
+
 function ThreejsRendering({date} : ThreejsRenderingProps) {
   const containerCanvasRef = useRef<HTMLDivElement>(null);
   const [clockScene, _setClockScene] = useState<boolean>(true);
@@ -21,8 +31,8 @@ function ThreejsRendering({date} : ThreejsRenderingProps) {
       <p><span>La date est </span> {date.toString()}</p>
       <select value={themeIndex} onChange={(e) => setThemeIndex(parseInt(e.target.value))}>
         {
-          [0,1,2,3,4,5].map(index => {
-            return (<option key={index} value={index}>{`Position ${index}`}</option>)
+          MaterialNames.map((name, index) => {
+            return (<option key={name} value={index}>{name}</option>)
           })
         }
       </select>
